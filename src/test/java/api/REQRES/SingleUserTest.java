@@ -17,6 +17,7 @@ public class SingleUserTest extends BaseTest{
 
         given()
                 .contentType(JSON)
+                .header("x-api-key", "reqres-free-v1")
                 .log().uri()
                 .when()
                 .get("/users/2")
@@ -35,6 +36,7 @@ public class SingleUserTest extends BaseTest{
 
         given()
                 .contentType(JSON)
+                .header("x-api-key", "reqres-free-v1")
                 .log().uri()
                 .when()
                 .get("/users/222")
@@ -49,6 +51,7 @@ public class SingleUserTest extends BaseTest{
 
         given()
                 .contentType(JSON)
+                .header("x-api-key", "reqres-free-v1")
                 .log().uri()
                 .when()
                 .get("/users/2")
