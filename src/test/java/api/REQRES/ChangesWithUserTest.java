@@ -46,8 +46,8 @@ public class ChangesWithUserTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверка изменения поля job у существующего пользователя")
-    void updateUserTest() {
+    @DisplayName("Проверка изменения существующего пользователя")
+    void updateUserPutTest() {
         given()
                 .body("{\"name\": \"morpheus\", \"job\": \"zion resident\"}")
                 .contentType(JSON)
@@ -61,6 +61,23 @@ public class ChangesWithUserTest extends BaseTest {
                 .statusCode(200)
                 .body("name", equalTo("morpheus"))
                 .body("job", equalTo("zion resident"));
+    }
+
+    @Test
+    @DisplayName("Проверка изменения поля job у существующего пользователя")
+    void updateUserPatchTest() {
+        given()
+                .body("{\"job\": \"zion_resident\"}")
+                .contentType(JSON)
+                .header("x-api-key", "reqres-free-v1")
+                .log().uri()
+                .when()
+                .patch("/users/2")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .body("job", equalTo("zion_resident"));
     }
 
     @Test
